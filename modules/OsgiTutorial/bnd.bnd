@@ -1,0 +1,7 @@
+Bundle-Category: learn
+Bundle-Description: Incorporate different features in Liferay 7 and implementing as means of\
+	learning
+Bundle-Name: OsgiTutorial
+Bundle-SymbolicName: com.nikhilesh.learning.liferay.tutorial
+Bundle-Version: 1.0.0
+Export-Package: com.nikhilesh.learning.liferay.tutorial.constants

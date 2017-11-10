@@ -1,0 +1,9 @@
+Bundle-Name: algorithm-api
+Bundle-SymbolicName: com.nikhilesh.liferay.algorithm.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.nikhilesh.liferay.algorithm.exception,\
+	com.nikhilesh.liferay.algorithm.model,\
+	com.nikhilesh.liferay.algorithm.service,\
+	com.nikhilesh.liferay.algorithm.service.persistence
+-includeresource: META-INF/service.xml=../algorithm-service/service.xml

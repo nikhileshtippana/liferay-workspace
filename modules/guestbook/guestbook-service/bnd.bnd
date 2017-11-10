@@ -1,0 +1,10 @@
+Bundle-Name: guestbook-service
+Bundle-SymbolicName: com.nikhilesh.learning.liferay.guestbook.service
+Bundle-Version: 1.0.0
+Liferay-Require-SchemaVersion: 1.0.0
+Liferay-Service: true
+Export-Package: \
+	com.nikhilesh.learning.liferay.guestbook.service.permission,\
+	com.nikhilesh.learning.liferay.guestbook.search,\
+	com.nikhilesh.learning.liferay.guestbook.service.util
+Web-ContextPath: /guestbook-service

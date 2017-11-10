@@ -1,0 +1,5 @@
+Bundle-Name: algorithm-service
+Bundle-SymbolicName: com.nikhilesh.liferay.algorithm.service
+Bundle-Version: 1.0.0
+Liferay-Require-SchemaVersion: 1.0.0
+Liferay-Service: true

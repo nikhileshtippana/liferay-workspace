@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean class="com.nikhilesh.liferay.algorithm.service.impl.ALGTreeLocalServiceImpl" id="com.nikhilesh.liferay.algorithm.service.ALGTreeLocalService" />
+	<bean class="com.nikhilesh.liferay.algorithm.service.impl.ALGTreeServiceImpl" id="com.nikhilesh.liferay.algorithm.service.ALGTreeService" />
+	<bean class="com.nikhilesh.liferay.algorithm.service.persistence.impl.ALGTreePersistenceImpl" id="com.nikhilesh.liferay.algorithm.service.persistence.ALGTreePersistence" parent="basePersistence" />
+	<bean class="com.nikhilesh.liferay.algorithm.service.impl.TreeNodeLocalServiceImpl" id="com.nikhilesh.liferay.algorithm.service.TreeNodeLocalService" />
+	<bean class="com.nikhilesh.liferay.algorithm.service.impl.TreeNodeServiceImpl" id="com.nikhilesh.liferay.algorithm.service.TreeNodeService" />
+	<bean class="com.nikhilesh.liferay.algorithm.service.persistence.impl.TreeNodePersistenceImpl" id="com.nikhilesh.liferay.algorithm.service.persistence.TreeNodePersistence" parent="basePersistence" />
+</beans>

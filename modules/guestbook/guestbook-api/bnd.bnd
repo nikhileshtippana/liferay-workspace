@@ -1,0 +1,11 @@
+Bundle-Name: guestbook-api
+Bundle-SymbolicName: com.nikhilesh.learning.liferay.guestbook.api
+Bundle-Version: 1.0.0
+Web-ContextPath: /guestbook-api
+Export-Package: \
+	com.nikhilesh.learning.liferay.guestbook.exception,\
+	com.nikhilesh.learning.liferay.guestbook.model,\
+	com.nikhilesh.learning.liferay.guestbook.service,\
+	com.nikhilesh.learning.liferay.guestbook.service.persistence,\
+	com.nikhilesh.learning.liferay.guestbook.web.constants
+-includeresource: META-INF/service.xml=../guestbook-service/service.xml
