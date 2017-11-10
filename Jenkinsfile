@@ -4,7 +4,7 @@ node {
   }
   
   stage('Build') {
-  	//sh "./gradlew clean build -PBUILD_NUMBER=${env.BUILD_NUMBER}"
+  	sh "./gradlew clean build"
   }
 
 }
