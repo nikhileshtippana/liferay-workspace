@@ -1,11 +1,11 @@
 # My Liferay Workspace
 
-##Guestbook Tutorial modules
+## Guestbook Tutorial modules
 - web
 - api
 - service
 
-##Learning modules
+## Learning modules
 - first-theme
 - OsgiTutorial
 - custom-login-jsp
