@@ -8,7 +8,8 @@ node {
   }
   
   stage('Distribution') {
-  	sh "rm -rf ./dist/*"
+  	sh "rm -rf dist"
+  	sh "mkdir dist"
   	sh "cp ./modules/algorithm/algorithm-api/build/libs/* ./dist"
   	sh "cp ./modules/algorithm/algorithm-service/build/libs/* ./dist"
   	sh "cp ./modules/custom-login-jsp/build/libs/* ./dist"
