@@ -1,0 +1,3 @@
+Bundle-Name: greeting-command
+Bundle-SymbolicName: com.nikhilesh.learning.liferay.greeting.command
+Bundle-Version: 1.0.0

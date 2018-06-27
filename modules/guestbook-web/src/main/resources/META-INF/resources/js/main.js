@@ -1,3 +1,3 @@
-function say(text){
-    alert(text);
+function say(text) {
+	alert(text);
 }

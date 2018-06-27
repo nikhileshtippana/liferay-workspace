@@ -4140,4 +4140,5 @@ public class GuestbookPersistenceImpl extends BasePersistenceImpl<Guestbook>
 	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"uuid"
 			});
+	private static final Serializable nullModel = null;
 }

@@ -27,17 +27,17 @@ long guestbookId = Long.valueOf((Long)renderRequest.getAttribute("guestbookId"))
 <aui:nav cssClass="nav-tabs">
 
 	<%
-		List<Guestbook> guestbooks = GuestbookLocalServiceUtil.getGuestbooks(scopeGroupId, WorkflowConstants.STATUS_APPROVED); 
+	List<Guestbook> guestbooks = GuestbookLocalServiceUtil.getGuestbooks(scopeGroupId, WorkflowConstants.STATUS_APPROVED);
 
-		for (int i = 0; i < guestbooks.size(); i++) {
-			Guestbook curGuestbook = (Guestbook)guestbooks.get(i);
-			String cssClass = StringPool.BLANK;
+	for (int i = 0; i < guestbooks.size(); i++) {
+		Guestbook curGuestbook = (Guestbook)guestbooks.get(i);
+		String cssClass = StringPool.BLANK;
 
-			if (curGuestbook.getGuestbookId() == guestbookId) {
-				cssClass = "active";
-			}
+		if (curGuestbook.getGuestbookId() == guestbookId) {
+			cssClass = "active";
+		}
 
-			if (GuestbookPermission.contains(permissionChecker, curGuestbook.getGuestbookId(), "VIEW")) {
+		if (GuestbookPermission.contains(permissionChecker, curGuestbook.getGuestbookId(), "VIEW")) {
 	%>
 
 			<portlet:renderURL var="viewPageURL">
@@ -74,7 +74,7 @@ long guestbookId = Long.valueOf((Long)renderRequest.getAttribute("guestbookId"))
 	<liferay-ui:search-container-row className="com.nikhilesh.learning.liferay.guestbook.model.Entry" modelVar="entry">
 		<liferay-ui:search-container-column-text property="message" />
 		<liferay-ui:search-container-column-text property="name" />
-		
+
 		<c:if test="<%= themeDisplay.isSignedIn() %>">
 			<liferay-ui:search-container-column-jsp align="right" path="/guestbookwebportlet/entry_actions.jsp" />
 		</c:if>

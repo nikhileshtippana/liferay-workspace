@@ -20,13 +20,14 @@ SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 	<liferay-ui:search-container-row className="com.nikhilesh.learning.liferay.guestbook.model.Entry" modelVar="entry">
 		<liferay-ui:search-container-column-text property="message" />
 		<liferay-ui:search-container-column-text property="name" />
-		<liferay-ui:search-container-column-text property="userName" name="Author"/>
-		<liferay-ui:search-container-column-text value="<%= sdf.format(entry.getCreateDate()) %>" name="Create Date" />
-		<liferay-ui:search-container-column-text value="<%= sdf.format(entry.getModifiedDate()) %>" name="Modified Date"/>
-		<liferay-ui:search-container-column-text name="status" >
-	        <aui:workflow-status showIcon="<%= false %>" showLabel="<%= false %>"  status="<%= entry.getStatus() %>" />
-	    </liferay-ui:search-container-column-text>
-		
+		<liferay-ui:search-container-column-text name="Author" property="userName" />
+		<liferay-ui:search-container-column-text name="Create Date" value="<%= sdf.format(entry.getCreateDate()) %>" />
+		<liferay-ui:search-container-column-text name="Modified Date" value="<%= sdf.format(entry.getModifiedDate()) %>" />
+
+		<liferay-ui:search-container-column-text name="status">
+			<aui:workflow-status showIcon="<%= false %>" showLabel="<%= false %>" status="<%= entry.getStatus() %>" />
+		</liferay-ui:search-container-column-text>
+
 		<liferay-ui:search-container-column-jsp align="right" path="/guestbookadminportlet/entry_actions.jsp" />
 	</liferay-ui:search-container-row>
 

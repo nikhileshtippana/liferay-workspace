@@ -4243,4 +4243,5 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"uuid"
 			});
+	private static final Serializable nullModel = null;
 }

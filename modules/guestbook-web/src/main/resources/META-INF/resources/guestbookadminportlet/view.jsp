@@ -5,7 +5,7 @@
 <liferay-ui:success key="guestbookDeleted" message="guestbook-deleted" />
 
 <%
-	SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 %>
 
 <liferay-ui:search-container total="<%= GuestbookLocalServiceUtil.getGuestbooksCount(scopeGroupId) %>">
@@ -13,12 +13,14 @@
 
 	<liferay-ui:search-container-row className="com.nikhilesh.learning.liferay.guestbook.model.Guestbook" modelVar="guestbook">
 		<liferay-ui:search-container-column-text property="name" />
-		<liferay-ui:search-container-column-text property="userName" name="Author"/>
-		<liferay-ui:search-container-column-text value="<%= sdf.format(guestbook.getCreateDate()) %>" name="Create Date" />
-		<liferay-ui:search-container-column-text value="<%= sdf.format(guestbook.getModifiedDate()) %>" name="Modified Date"/>
-		<liferay-ui:search-container-column-text name="status" >
-	        <aui:workflow-status showIcon="<%= false %>" showLabel="<%= false %>"  status="<%= guestbook.getStatus() %>" />
-	    </liferay-ui:search-container-column-text>
+		<liferay-ui:search-container-column-text name="Author" property="userName" />
+		<liferay-ui:search-container-column-text name="Create Date" value="<%= sdf.format(guestbook.getCreateDate()) %>" />
+		<liferay-ui:search-container-column-text name="Modified Date" value="<%= sdf.format(guestbook.getModifiedDate()) %>" />
+
+		<liferay-ui:search-container-column-text name="status">
+			<aui:workflow-status showIcon="<%= false %>" showLabel="<%= false %>" status="<%= guestbook.getStatus() %>" />
+		</liferay-ui:search-container-column-text>
+
 		<liferay-ui:search-container-column-jsp align="right" path="/guestbookadminportlet/guestbook_actions.jsp" />
 	</liferay-ui:search-container-row>
 
