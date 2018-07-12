@@ -1,5 +1,24 @@
 package com.nikhilesh.learning.liferay.guestbook.web.portlet;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
+import javax.portlet.Portlet;
+import javax.portlet.PortletException;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
+
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Modified;
+import org.osgi.service.component.annotations.Reference;
+
+import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -12,38 +31,24 @@ import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-
 import com.nikhilesh.learning.liferay.guestbook.model.Entry;
 import com.nikhilesh.learning.liferay.guestbook.model.Guestbook;
 import com.nikhilesh.learning.liferay.guestbook.service.EntryLocalService;
 import com.nikhilesh.learning.liferay.guestbook.service.GuestbookLocalService;
+import com.nikhilesh.learning.liferay.guestbook.web.configuration.GuestbookConfiguration;
 import com.nikhilesh.learning.liferay.guestbook.web.constants.GuestbookPortletKeys;
-
-import java.io.IOException;
-
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
-import javax.portlet.Portlet;
-import javax.portlet.PortletException;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
-
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author nik
  */
 @Component(
+	    configurationPid = "com.nikhilesh.learning.liferay.guestbook.web.configuration.GuestbookConfiguration",
 		immediate = true,
 		property = {
 			"com.liferay.portlet.display-category=category.nikapps",
 			"com.liferay.portlet.instanceable=false",
 			"com.liferay.portlet.scopeable=true",
+			"com.liferay.portlet.css-class-wrapper=guestbook",
 			"javax.portlet.display-name=Guestbook",
 			"javax.portlet.expiration-cache=60",
 			"javax.portlet.init-param.template-path=/",
@@ -109,6 +114,8 @@ public class GuestbookPortlet extends MVCPortlet {
 			}
 
 			renderRequest.setAttribute("guestbookId", guestbookId);
+			
+			renderRequest.setAttribute(GuestbookConfiguration.class.getName(), _configuration);
 
 			User user = PortalUtil.getUser(renderRequest);
 
@@ -172,6 +179,10 @@ public class GuestbookPortlet extends MVCPortlet {
 			}
 		}
 	}
+	
+	public String getFavoriteColor(Map<String, String> colors) {
+		return (String) colors.get(_configuration.favoriteColor());
+	}
 
 	@Reference(unbind = "-")
 	protected void setEntryService(EntryLocalService entryLocalService) {
@@ -184,9 +195,18 @@ public class GuestbookPortlet extends MVCPortlet {
 
 		_guestbookLocalService = guestbookLocalService;
 	}
+	
+	@Activate
+	@Modified
+	protected void activate(Map<String, Object> properties) {
+		
+		_configuration = ConfigurableUtil.createConfigurable(GuestbookConfiguration.class, properties);
+	}
 
 	protected EntryLocalService _entryLocalService;
 	protected GuestbookLocalService _guestbookLocalService;
+	
+	private volatile GuestbookConfiguration _configuration;
 
 	static final Log _log = LogFactoryUtil.getLog(GuestbookPortlet.class);
 

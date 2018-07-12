@@ -6,7 +6,17 @@
 
 <%
 long guestbookId = Long.valueOf((Long)renderRequest.getAttribute("guestbookId"));
+
+GuestbookConfiguration configuration = (GuestbookConfiguration) GetterUtil.getObject(renderRequest.getAttribute(GuestbookConfiguration.class.getName()));
+
+String favoriteColor = configuration.favoriteColor();
 %>
+
+<style>
+.guestbook .table-cell.first {
+	color: <%= favoriteColor %>
+}
+</style>
 
 <liferay-portlet:renderURL varImpl="searchURL">
 	<portlet:param name="mvcPath" value="/guestbookwebportlet/view_search.jsp" />
