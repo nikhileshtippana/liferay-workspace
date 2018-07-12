@@ -66,17 +66,17 @@ public class GuestbookPortlet extends MVCPortlet {
 		throws PortalException {
 
 		long entryId = ParamUtil.getLong(request, "entryId");
-		long guestbookId = ParamUtil.getLong(request, "guestbookId");
+		String redirectURL = ParamUtil.getString(request, "redirect");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			Entry.class.getName(), request);
 
 		try {
-			response.setRenderParameter(
-				"guestbookId", Long.toString(guestbookId));
-
 			_entryLocalService.deleteEntry(entryId, serviceContext);
+			
 			SessionMessages.add(request, "entryDeleted");
+
+			response.sendRedirect(redirectURL);
 		}
 		catch (Exception e) {
 			Logger.getLogger(
@@ -139,6 +139,7 @@ public class GuestbookPortlet extends MVCPortlet {
 		String message = ParamUtil.getString(request, "message");
 		long guestbookId = ParamUtil.getLong(request, "guestbookId");
 		long entryId = ParamUtil.getLong(request, "entryId");
+		String redirectURL = ParamUtil.getString(request, "redirect");
 
 		if (entryId > 0) {
 			try {
@@ -148,8 +149,7 @@ public class GuestbookPortlet extends MVCPortlet {
 
 				SessionMessages.add(request, "entryUpdated");
 
-				response.setRenderParameter(
-		"guestbookId", Long.toString(guestbookId));
+				response.sendRedirect(redirectURL);
 			}
 			catch (Exception e) {
 				SessionErrors.add(request, e.getClass().getName());
@@ -167,8 +167,7 @@ public class GuestbookPortlet extends MVCPortlet {
 
 				SessionMessages.add(request, "entryAdded");
 
-				response.setRenderParameter(
-		"guestbookId", Long.toString(guestbookId));
+				response.sendRedirect(redirectURL);
 			}
 			catch (Exception e) {
 				SessionErrors.add(request, e.getClass().getName());

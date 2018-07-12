@@ -12,10 +12,9 @@ Entry entry = (Entry)row.getObject();
 
 	<c:if
         test="<%= EntryPermission.contains(permissionChecker, entry.getEntryId(), ActionKeys.UPDATE) %>">
-        <portlet:renderURL var="editURL">
-            <portlet:param name="entryId"
-                value="<%= String.valueOf(entry.getEntryId()) %>" />
+        <portlet:renderURL var="editURL" windowState="maximized">
             <portlet:param name="mvcPath" value="/guestbookwebportlet/edit_entry.jsp" />
+            <portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
         </portlet:renderURL>
 
         <liferay-ui:icon image="edit" message="Edit"
@@ -38,11 +37,14 @@ Entry entry = (Entry)row.getObject();
     <c:if
         test="<%=EntryPermission.contains(permissionChecker, entry.getEntryId(), ActionKeys.DELETE) %>">
 
+		<portlet:renderURL var="viewURL" windowState="normal">
+			<portlet:param name="mvcPath" value="/guestbookwebportlet/view.jsp" />
+			<portlet:param name="guestbookId" value="<%= String.valueOf(entry.getGuestbookId()) %>" />
+		</portlet:renderURL>
+		
         <portlet:actionURL name="deleteEntry" var="deleteURL">
-            <portlet:param name="entryId"
-                value="<%= String.valueOf(entry.getEntryId()) %>" />
-            <portlet:param name="guestbookId"
-                value="<%= String.valueOf(entry.getGuestbookId()) %>" />
+            <portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
+            <portlet:param name="redirect" value="<%= viewURL %>" />
         </portlet:actionURL>
 
         <liferay-ui:icon-delete url="<%=deleteURL.toString() %>" />

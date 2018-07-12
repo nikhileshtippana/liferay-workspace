@@ -2,7 +2,7 @@ Bundle-Name: guestbook-web
 Bundle-SymbolicName: com.nikhilesh.learning.liferay.guestbook.web
 Bundle-Version: 1.0.0
 Web-ContextPath: /guestbook-web
--jsp:\
+-jsp: \
 	*.jsp,\
 	*.jspf
 -plugin.bundle: com.liferay.ant.bnd.resource.bundle.ResourceBundleLoaderAnalyzerPlugin

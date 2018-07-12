@@ -22,14 +22,14 @@ String keywords = ParamUtil.getString(request, "keywords");
 long guestbookId = ParamUtil.getLong(renderRequest, "guestbookId");
 %>
 
-<liferay-portlet:renderURL varImpl="searchURL">
-	<portlet:param name="mvcPath"
-		value="/guestbookwebportlet/view_search.jsp"
-	/>
+<liferay-portlet:renderURL varImpl="searchURL" windowState="maximized">
+	<portlet:param name="mvcPath" value="/guestbookwebportlet/view_search.jsp" />
+	<portlet:param name="guestbookId" value="<%= String.valueOf(guestbookId) %>" />
 </liferay-portlet:renderURL>
 
-<portlet:renderURL var="viewURL">
+<portlet:renderURL var="viewURL" windowState="normal">
 	<portlet:param name="mvcPath" value="/guestbookwebportlet/view.jsp" />
+	<portlet:param name="guestbookId" value="<%= String.valueOf(guestbookId) %>" />
 </portlet:renderURL>
 
 <aui:form action="<%= searchURL %>" method="get" name="fm">

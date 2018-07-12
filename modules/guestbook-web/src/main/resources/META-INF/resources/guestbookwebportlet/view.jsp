@@ -18,8 +18,9 @@ String favoriteColor = configuration.favoriteColor();
 }
 </style>
 
-<liferay-portlet:renderURL varImpl="searchURL">
+<liferay-portlet:renderURL varImpl="searchURL" windowState="maximized">
 	<portlet:param name="mvcPath" value="/guestbookwebportlet/view_search.jsp" />
+	<portlet:param name="guestbookId" value="<%= String.valueOf(guestbookId) %>" />
 </liferay-portlet:renderURL>
 
 <aui:form action="<%= searchURL %>" method="get" name="fm">
@@ -50,12 +51,12 @@ String favoriteColor = configuration.favoriteColor();
 		if (GuestbookPermission.contains(permissionChecker, curGuestbook.getGuestbookId(), "VIEW")) {
 	%>
 
-			<portlet:renderURL var="viewPageURL">
+			<portlet:renderURL var="viewURL">
 				<portlet:param name="mvcPath" value="/guestbookwebportlet/view.jsp" />
 				<portlet:param name="guestbookId" value="<%= String.valueOf(curGuestbook.getGuestbookId()) %>" />
 			</portlet:renderURL>
 
-			<aui:nav-item cssClass="<%= cssClass %>" href="<%= viewPageURL %>" label="<%= HtmlUtil.escape(curGuestbook.getName()) %>" />
+			<aui:nav-item cssClass="<%= cssClass %>" href="<%= viewURL %>" label="<%= HtmlUtil.escape(curGuestbook.getName()) %>" />
 
 	<%
 		}
@@ -66,7 +67,7 @@ String favoriteColor = configuration.favoriteColor();
 
 <c:if test='<%= GuestbookPermission.contains(permissionChecker, guestbookId, "ADD_ENTRY") %>'>
 	<aui:button-row cssClass="guestbook-buttons">
-		<portlet:renderURL var="addEntryURL">
+		<portlet:renderURL var="addEntryURL" windowState="maximized">
 			<portlet:param name="mvcPath" value="/guestbookwebportlet/edit_entry.jsp" />
 			<portlet:param name="guestbookId" value="<%= String.valueOf(guestbookId) %>" />
 		</portlet:renderURL>

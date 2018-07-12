@@ -9,14 +9,17 @@ if (entryId > 0) {
 	entry = EntryLocalServiceUtil.getEntry(entryId);
 }
 
-long guestbookId = ParamUtil.getLong(renderRequest, "guestbookId");
+long guestbookId = entry == null ? ParamUtil.getLong(renderRequest, "guestbookId") : entry.getGuestbookId();
 %>
 
-<portlet:renderURL var="viewURL">
-	<portlet:param name="mvcPath" value="/guestbookwebportlet/view.jsp"></portlet:param>
+<portlet:renderURL var="viewURL" windowState="normal">
+	<portlet:param name="mvcPath" value="/guestbookwebportlet/view.jsp" />
+	<portlet:param name="guestbookId" value="<%= String.valueOf(guestbookId) %>" />
 </portlet:renderURL>
 
-<portlet:actionURL name="saveEntry" var="saveEntryURL" />
+<portlet:actionURL name="saveEntry" var="saveEntryURL">
+	<portlet:param name="redirect" value="<%= viewURL %>"/>
+</portlet:actionURL>
 
 <aui:form action="<%= saveEntryURL %>" name="<portlet:namespace />fm">
 	<aui:model-context bean="<%= entry %>" model="<%= Entry.class %>" />
@@ -26,7 +29,7 @@ long guestbookId = ParamUtil.getLong(renderRequest, "guestbookId");
 		<aui:input name="email" />
 		<aui:input name="message" />
 		<aui:input name="entryId" type="hidden" />
-		<aui:input name="guestbookId" type="hidden" value="<%= entry == null ? guestbookId : entry.getGuestbookId() %>" />
+		<aui:input name="guestbookId" type="hidden" value="<%= guestbookId %>" />
 	</aui:fieldset>
 
 	<aui:button-row>
